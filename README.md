@@ -42,5 +42,5 @@ pip install numpy
 ## Usage
 To run the program, simply run
 
-```sh filter.sh <src> <dst (default='./output.png'>```
+```sh filter.sh <src> <dst (default='./output.png')>```
 
