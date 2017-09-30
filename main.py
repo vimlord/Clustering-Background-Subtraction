@@ -13,7 +13,7 @@ frames = np.array([
     for i in range(1, num_frames+1)
 ])
 
-print("Extracted frames for", frames.shape[3], "by", frames.shape[1], "video")
+print("Extracted frames for", frames.shape[2], "by", frames.shape[1], "video")
 
 Image.fromarray(np.array(fix_photo(frames)).astype(np.uint8)).save(sys.argv[3])
 
