@@ -73,21 +73,23 @@ def k_means(k, points):
                 complete = False
                 break
 
+        iterations += 1
+
         # The upper bound is 2^(kd+1), where d is the dimensionality of the data
-        if (iterations >= len(points)**(k*len(points[0])+1)):
+        if complete or iterations >= len(points)**(k*len(points[0])+1):
             break
 
     return list(zip(means, categories))
 
 
-def fix_photo(frames, means=2):
+def fix_photo(frames, means=4):
     shape = (len(frames), len(frames[0]), len(frames[0][0]))
     image = []
 
     bar_width = 40
     bar_prog = 0
     
-    sys.stdout.write("Cluster averaging images...\nProgress: 0/" + str(shape[1]) + " [" + (bar_width * " ") + "]")
+    sys.stdout.write("Running K-means\nProgress: 0/" + str(shape[1]) + " [" + (bar_width * " ") + "]")
     sys.stdout.flush()
 
     for r in range(shape[1]):
@@ -116,28 +118,14 @@ def fix_photo(frames, means=2):
         sys.stdout.write("\rProgress: " + str(r+1) + "/" + str(shape[1]) + " [" + ("#" * bar_prog) + (" " * (bar_width - bar_prog)) + "]")
         sys.stdout.flush()
 
-    print("\rProgress: " + str(shape[1]) + "/" + str(shape[1]) + " [" + ("#" * bar_prog) + (" " * (bar_width - bar_prog)) + "] Done!")
+    print("\rProgress: " + str(shape[1]) + "/" + str(shape[1]) + " [" + ("#" * bar_prog) + (" " * (bar_width - bar_prog)) + "] 0 hr 0 min (Done!)")
 
     return image
 
 
 if __name__ == '__main__':
-    """
-    res = k_means(3, np.array([
-        [1.,2.,3.], 
-        [3.,2.,3.],
-        [7.,4.,1.],
-        [4.,5.,6.], 
-        [7.,8.,9.]]))
-
-    for m,cs in res:
-        print("Mean:", m)
-        for c in cs:
-            print("   ", c)
-    """
-
-    photo = np.random.uniform(0, 1, size=(10, 100, 100, 3)).tolist()
-    fix_photo(photo)
-
+    for _ in range(1024):
+        res = k_means(2, np.random.uniform(0, 256, size=(80, 3)))
+        print(len(res))
 
 

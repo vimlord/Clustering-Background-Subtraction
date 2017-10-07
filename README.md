@@ -9,16 +9,15 @@ from the field.
 ## About
 
 The program performs its operation by searching for the most common pixel
-value for a given pixel across all frames. This is done using K-means
-clustering in the given implementation, although other clustering algorithms
+value for a given pixel across all frames. The provided software allowed this
+to be done with either k-means or DBSCAN, although other clustering algorithms
 would also work in its place. The operation is applied across each pixel
 in order to generate an output image.
 
 ## Dependencies
 
-The program utilizes a shell script that splits a given clip into frames.
-This operation requires that ```ffmpeg``` be installed. Using a package
-manager, this can be done with one of these methods:
+The program utilizes ```ffmpeg``` in order to split a given clip into frames.
+Using a package manager, this can be done with one of these methods:
 
 ```
 # Apt-Get
@@ -42,5 +41,7 @@ pip install numpy
 ## Usage
 To run the program, simply run
 
-```sh filter.sh <src> <dst (default='./output.png')>```
+```python main.py```
+
+along with any necessary arguments.
 
