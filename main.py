@@ -48,7 +48,6 @@ workdir = './.frames_' + os.path.splitext(os.path.basename(params.input))[0]
 if params.output is None:
     # Use input file as name for output file
     params.output = './' + os.path.splitext(os.path.basename(params.input))[0] + '.png'
-print(params.output)
 
 #print('Preparing files in', workdir)
 print('Preparing', params.input, 'for processing')
