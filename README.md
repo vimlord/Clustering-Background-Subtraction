@@ -32,10 +32,11 @@ sudo pacman -S ffmpeg
 
 The program also relies on the use of ```python```, which can be similarly
 installed. Finally, the program requires Numpy, which is used in the
-computation of the clusters. This can be done using pip like so:
+computation of the clusters, as well as Pillow, which is used for image
+manipulation. These can be acquired using pip like so:
 
 ```
-pip install numpy
+pip install numpy Pillow
 ```
 
 ## Usage
