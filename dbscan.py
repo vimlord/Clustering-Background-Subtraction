@@ -130,7 +130,9 @@ def fix_photo(frames, eps=4, minPts = 3):
         sys.stdout.write(time.strftime("%H hr %M min", time.gmtime(t)))
         sys.stdout.flush()
 
-    print("\rProgress: " + str(shape[1]) + "/" + str(shape[1]) + " [" + ("#" * bar_prog) + (" " * (bar_width - bar_prog)) + "] 0 hr 0 min (Done!)")
+    sys.stdout.write("\rProgress: " + str(shape[1]) + "/" + str(shape[1]) + " [" + ("#" * bar_prog) + (" " * (bar_width - bar_prog)) + "] Done! ")
+
+    print(time.strftime("(Time: %H hr %M min)", time.gmtime(time.time() - start)))
 
     return image
 
