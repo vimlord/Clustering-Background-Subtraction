@@ -42,6 +42,8 @@ def fix_photo(frames, means=4):
 
             # Add the value
             row.append(clusters.cluster_centers_[l]) 
+
+        image.append(row)
         
         # Bar progress
         bar_prog = int((bar_width * (r+1.)) / shape[1])
