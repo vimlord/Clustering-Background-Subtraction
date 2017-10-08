@@ -88,8 +88,9 @@ def fix_photo(frames, means=4):
 
     bar_width = 40
     bar_prog = 0
+    start = time.time()
     
-    sys.stdout.write("Running K-means\nProgress: 0/" + str(shape[1]) + " [" + (bar_width * " ") + "]")
+    sys.stdout.write("Running K-means...\nProgress: 0/" + str(shape[1]) + " [" + (bar_width * " ") + "] ETA: N/A")
     sys.stdout.flush()
 
     for r in range(shape[1]):
@@ -111,14 +112,20 @@ def fix_photo(frames, means=4):
             # Add the mean to the row
             row.append(m)
         
-        # Provide the image
-        image.append(row)
-
+        # Bar progress
         bar_prog = int((bar_width * (r+1.)) / shape[1])
-        sys.stdout.write("\rProgress: " + str(r+1) + "/" + str(shape[1]) + " [" + ("#" * bar_prog) + (" " * (bar_width - bar_prog)) + "]")
+        
+        # Time remaining
+        t = time.time() - start
+        t = (shape[1] * t / (r+1.0)) - t
+
+        sys.stdout.write("\rProgress: " + str(r+1) + "/" + str(shape[1]) + " [" + ("#" * bar_prog) + (" " * (bar_width - bar_prog)) + "] ETA: ")
+        sys.stdout.write(time.strftime("%H hr %M min", time.gmtime(t)))
         sys.stdout.flush()
 
-    print("\rProgress: " + str(shape[1]) + "/" + str(shape[1]) + " [" + ("#" * bar_prog) + (" " * (bar_width - bar_prog)) + "] 0 hr 0 min (Done!)")
+    sys.stdout.write("\rProgress: " + str(shape[1]) + "/" + str(shape[1]) + " [" + ("#" * bar_prog) + (" " * (bar_width - bar_prog)) + "] Done! ")
+
+    print(time.strftime("(Time: %H hr %M min)", time.gmtime(time.time() - start)))
 
     return image
 
