@@ -17,7 +17,7 @@ parser.add_argument('-a', '--algo',
         choices=['dbscan', 'kmeans'])
 
 parser.add_argument('-c', '--clusters',
-        default=4, dest='clusters',
+        default=4, dest='clusters', type=int,
         help='number of clusters to use if necessary')
 
 parser.add_argument('-i', '--input',
@@ -27,7 +27,7 @@ parser.add_argument('-i', '--input',
 
 parser.add_argument('-n', '--neighbors',
         default=4,
-        dest='neighbors',
+        dest='neighbors', type=int,
         help='number of neighbors to use if necessary')
 
 parser.add_argument('-o', '--output',
@@ -37,7 +37,7 @@ parser.add_argument('-o', '--output',
 
 parser.add_argument('-r', '--radius',
         default=4,
-        dest='radius',
+        dest='radius', type=float,
         help='neighbor radius to check with if necessary')
 
 # Parse arguments.
